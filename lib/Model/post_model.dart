@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-part 'post_model.g.dart'; // 🔹 Must match file name
+part 'post_model.g.dart';
 
 @HiveType(typeId: 0)
 class Post extends HiveObject {

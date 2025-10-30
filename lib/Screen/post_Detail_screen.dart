@@ -1,26 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import '../Controller/postController.dart';
-//
-// class PostDetailScreen extends StatelessWidget {
-//   final int postId;
-//   final PostController controller = Get.find();
-//
-//   PostDetailScreen({required this.postId});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final post = controller.posts.firstWhere((p) => p.id == postId);
-//     return Scaffold(
-//       appBar: AppBar(title: Text(post.title)),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Text(post.body),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
