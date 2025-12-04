@@ -13,8 +13,7 @@ class PostDetailController extends GetxController {
       final url = Uri.parse('https://dummyjson.com/posts/$postId');
       final response = await http.get(url);
 
-      if (response.statusCode == 200 &&
-          (response.headers['content-type']?.contains('application/json') ?? false)) {
+      if (response.statusCode == 200 && (response.headers['content-type']?.contains('application/json') ?? false)) {
         final Map<String, dynamic> data = json.decode(response.body);
         post.value = Post.fromJson(data);
       } else {

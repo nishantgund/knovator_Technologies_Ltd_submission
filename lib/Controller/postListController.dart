@@ -8,8 +8,8 @@ class PostListController extends GetxController {
   var posts = <Post>[].obs;
   late Box<Post> postBox;
 
-  int limit = 30;  // Number of posts per fetch
-  int skip = 0;    // How many posts already loaded
+  int limit = 10;
+  int skip = 0;
   bool isLoadingMore = false;
   bool allLoaded = false;
 
@@ -27,7 +27,7 @@ class PostListController extends GetxController {
     skip = posts.length;
   }
 
-  // Fetch posts from API with pagination
+  // Fetching all posts from API with pagination
   Future<void> fetchPosts({bool loadMore = false}) async {
     if (allLoaded || isLoadingMore) return;
 
@@ -37,15 +37,15 @@ class PostListController extends GetxController {
       final url = Uri.parse('https://dummyjson.com/posts?limit=$limit&skip=$skip');
       final response = await http.get(url);
 
-      if (response.statusCode == 200 &&
-          (response.headers['content-type']?.contains('application/json') ?? false)) {
+      if (response.statusCode == 200 && (response.headers['content-type']?.contains('application/json') ?? false)) {
         final Map<String, dynamic> jsonBody = json.decode(response.body);
         final List<dynamic> data = jsonBody['posts'];
         final apiPosts = data.map((e) => Post.fromJson(e)).toList();
 
         if (apiPosts.isEmpty) {
-          allLoaded = true; // No more posts to load
-        } else {
+          allLoaded = true;
+        }
+        else {
           skip += apiPosts.length;
 
           // Save/update Hive
@@ -53,7 +53,6 @@ class PostListController extends GetxController {
             postBox.put(p.id, p);
           }
 
-          // Add new posts to UI
           posts.addAll(apiPosts);
         }
       } else {
@@ -66,7 +65,7 @@ class PostListController extends GetxController {
     }
   }
 
-  // Mark post as read
+  // Marking post as read
   void markAsRead(int postId) {
     final index = posts.indexWhere((p) => p.id == postId);
     if (index != -1) {
