@@ -62,6 +62,7 @@ The Knovator App is a Flutter application that fetches posts from an API, stores
 - `build_runner: ^2.3.3` → Code generation
 - `flutter_native_splash: ^2.4.0` → Splash screen customization
 - `flutter_launcher_icons: ^0.14.1` → App icon customization
+- 'shimmer: ^3.0.0' → Shimmer Effect
 
 ---
 
@@ -73,7 +74,7 @@ The Knovator App is a Flutter application that fetches posts from an API, stores
     - Reduces network calls and improves app responsiveness.
 
 - **Pagination**:
-    - Loads posts in chunks (30 at a time) instead of all at once.
+    - Loads posts in chunks (10 at a time) instead of all at once.
     - Reduces memory usage and improves performance.
     - Provides smooth scrolling and better user experience.
 
